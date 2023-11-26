@@ -1,4 +1,6 @@
 import mongoose, {Schema} from "mongoose";
+import  Jwt from "jsonwebtoken";
+import bcrypt from "bcrypt"
 
 const userSchema = new Schema (
     {
@@ -17,7 +19,7 @@ const userSchema = new Schema (
         lowecase: true,
         trim : true,
       },
-      fullname: {
+      fullName: {
         type:String,
         required: true,
         trim : true,
@@ -52,6 +54,51 @@ const userSchema = new Schema (
 )
 
 
+userSchema.pre("save", async function (next) {
+    if(!this.isModified("password")) return next()
 
+    this.password = bcrypt.hash(this.password, 10) // encrypting password
+    next()
+})
+// direct encyption is not possible so we will use mongoose hooks 
+
+userSchema.methods.isPasswaordCorrect = async function (password){
+    return await bcrypt.compare(password,this.password)
+}
+//check for the password correction 
+//has a return type of true and false 
+
+// jwt is type of key 
+
+userSchema.methods.generateAccessToken = function (){
+      return  Jwt.sign(
+        {
+        _id: this._id,
+        email: this.email,
+        username: this.username,
+        fullName: this.fullName,
+        },
+       process.env.ACCESS_TOKEN_SECRET,
+       {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+       }
+       )
+}
+//sign method use to generate token 
+
+userSchema.methods.generateRefreshToken = function (){
+    return  Jwt.sign(
+        {
+        _id: this._id,
+        },
+       process.env.REFRESH_TOKEN_SECRET,
+       {
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY
+       }
+       )
+    
+}
 
 export const User = mongoose.model("User", userSchema)
+
+

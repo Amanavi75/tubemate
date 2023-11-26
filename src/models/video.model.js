@@ -49,3 +49,5 @@ videoschema.plugin(mongooseAggregatePaginate)  //plugin for mongooseAggregatePag
 //*we will  mongoose-aggregate-paginate-v2 package for writting thses types of quereis 
 
 export const Video = mongoose.model("Video",videoschema);
+
+
