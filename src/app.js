@@ -25,4 +25,12 @@ app.use(cookieParser())
 
 app.use(express.static("public"))  // used to acess the public folder or files from the local 
 
+
+
+
+//router import
+
+import useRouter from './routes/user.routes.js'   
+// importing user route 
+
 export {app}
