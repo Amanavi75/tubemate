@@ -30,7 +30,10 @@ app.use(express.static("public"))  // used to acess the public folder or files f
 
 //router import
 
-import useRouter from './routes/user.routes.js'   
+import userRouter from './routes/user.routes.js'   
 // importing user route 
+
+//routes declaration
+app.use("/api/v1/users",userRouter)
 
 export {app}
