@@ -14,4 +14,4 @@ const storage = multer.diskStorage({
      storage,
      })
 
-// package for uploading different types of file apad
+// package for uploading different types of file 
