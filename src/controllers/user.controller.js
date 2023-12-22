@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async(req,res)=>{
    //check for the user creation 
    //return res
 
-   const {fullName,email,userName,password} = req.body // step 1
+   const {fullName,email,username,password} = req.body // step 1
 
    //if(fullName===""){
     //throw new ApiError(400,"full Name is required")
@@ -24,14 +24,14 @@ const registerUser = asyncHandler(async(req,res)=>{
    // for optimization we will use  .some() method 
 
    if(
-    [fullName,email,userName,password].some((field)=>
+    [fullName,email,username,password].some((field)=>
         field?.trim()==="") // will check there shouldn't be any empty field
     ){
        throw new ApiError(400,"all fields are required");
     }
    
-   const existedUser = User.findOne({
-        $or:[{ email }, { userName }]
+   const existedUser = await User.findOne({
+        $or:[{ email }, { username }]
     })
 
     if(existedUser){
@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async(req,res)=>{
     coverImage:coverImage.url || "",
     email,
     password,
-    userName:userName.toLowerCase()
+    username:username.toLowerCase(),
 
    
 
