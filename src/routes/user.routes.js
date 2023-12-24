@@ -4,9 +4,9 @@ import {registerUser} from "../controllers/user.controller.js"
 
 const router = Router()
 
-
+//adding  upload.field middleware so that we will able to upload file during registration 
 router.route("/register").post(
-    upload.fields([
+    upload.fields([ 
       {
         name: "avatar",
         maxCount:1
@@ -21,4 +21,3 @@ router.route("/register").post(
 
 export default router;
 
-//adding  upload.field middleware so that we will able to upload file during registration 
