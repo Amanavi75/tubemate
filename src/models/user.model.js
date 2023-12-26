@@ -62,7 +62,7 @@ userSchema.pre("save", async function (next) {
 })
 // direct encyption is not possible so we will use mongoose hooks 
 
-userSchema.methods.isPasswaordCorrect = async function (password){
+userSchema.methods.isPasswordCorrect = async function (password){
     return await bcrypt.compare(password,this.password)
 }
 //check for the password correction 
