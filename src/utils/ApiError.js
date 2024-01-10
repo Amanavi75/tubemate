@@ -26,3 +26,4 @@ class ApiError extends Error {
 export {ApiError}
 
 //* its a custom error class that we have made extending the inbuilt error class in express 
+// custom error for api
