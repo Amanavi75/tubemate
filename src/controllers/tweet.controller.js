@@ -36,10 +36,6 @@ const getUserTweets = asyncHandler(async (req, res) => {
         throw new ApiError(400,"userId is invalid")
     }
 
-    if(tweet.owner?.toString()  !== req.user._id){
-        throw new ApiError(400,"only owner can remove video from the playList")
-
-    }
 
      //* error in the simple query we have to use the aggregation pipeLines
     return res
@@ -64,7 +60,7 @@ const updateTweet = asyncHandler(async (req, res) => {
     }
 
 
-    if(tweet.owner?.toString()!==req.user._id){
+    if(tweet?.owner.toString()!==req.user._id){
         throw new ApiError(400, " only woner of the tweet can update or edit the tweet")
     }
     const updatedTweet = await Tweet.findByIdAndUpdate(
@@ -102,7 +98,7 @@ const deleteTweet = asyncHandler(async (req, res) => {
         throw new ApiError(404,"tweet not found")
     }
 
-    if(tweet.owner?.toString()!==req.user._id){
+    if(tweet?.owner.toString()!==req.user._id){
         throw new ApiError(400, "only owner can delete his tweet")
     }
 
