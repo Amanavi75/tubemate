@@ -41,13 +41,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
 
     }
 
-    const getTweet = await Tweet.findById(userId);
-
-    if(!getTweet){
-        throw new ApiError(404,"unable  to found tweet")
-
-    }
-
+     //* error in the simple query we have to use the aggregation pipeLines
     return res
     .status(200)
     .json(new ApiResponse(200,getTweet,"tweet successfully found"))
