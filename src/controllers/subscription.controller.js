@@ -53,7 +53,7 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
     }
 
     //* write the  aggregation pipelines for the getting the id
-    
+
 
 })
 
@@ -70,6 +70,9 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
     if(!user){
         throw new ApiError(400,"unable to found the user")
     }
+
+    //* write the aggregation pipeLines for getting the exact id
+    
 
 
 
