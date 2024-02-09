@@ -42,11 +42,38 @@ const toggleSubscription = asyncHandler(async (req, res) => {
 const getUserChannelSubscribers = asyncHandler(async (req, res) => {
     const {channelId} = req.params
 
+    if(!isValidObjectId(channelId)){
+        throw new ApiError(400,"channel id is invalid")
+    }
+
+    const doesUserExist = await User.findById(channelId);
+
+    if(!doesUserExist){
+        throw new ApiError("400","user does'nt exist")
+    }
+
+    //* write the  aggregation pipelines for the getting the id
+    
+
 })
 
 // controller to return channel list to which user has subscribed
 const getSubscribedChannels = asyncHandler(async (req, res) => {
     const { subscriberId } = req.params
+    if(!isValidObjectId(subscriberId)){
+        throw new ApiError(400,"Subscriber id is not valid")
+    }
+
+    // check for the user existence 
+    const user = await User.findById(subscriberId);
+
+    if(!user){
+        throw new ApiError(400,"unable to found the user")
+    }
+
+
+
+
 })
 
 export {
