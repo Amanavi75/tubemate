@@ -74,12 +74,6 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
     //* write the aggregation pipeLines for getting the exact id
     // we have to apply the  match  accumulator for the id match for the user and the channel id
     // there after we have to check for the lookUp 
-    
-
-
-
-
-
 })
 
 export {
