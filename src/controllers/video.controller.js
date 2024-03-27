@@ -44,6 +44,15 @@ const updateVideo = asyncHandler(async (req, res) => {
 const deleteVideo = asyncHandler(async (req, res) => {
     const { videoId } = req.params
     //TODO: delete video
+    if(!isValidObjectId(videoId)){
+        throw new ApiError(400,"video id is not valid")
+    }
+
+    await Video.findByIdAndDelete(videoId);
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200,'video deleted successfully'));
 })
 
 const togglePublishStatus = asyncHandler(async (req, res) => {
