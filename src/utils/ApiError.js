@@ -1,4 +1,4 @@
-//* creating the error class so we woild be able to lookout out error in better ways in production grade
+//* creating the error class so we would be able to lookout out error in better ways in production grade
 
 class ApiError extends Error {
     constructor(
