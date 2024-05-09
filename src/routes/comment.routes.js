@@ -12,8 +12,8 @@ const router = Router(); // creating instance for using the router object
 
      router.route("/comments").get( verifyJWT, getVideoComments);
      router.route("/addComment").post(verifyJWT, addComment);
-     router.route("/updatecomment").patch(updateComment);
-     router.route("/deletecomment").patch(deleteComment);
+     router.route("/updatecomment").patch(verifyJWT,updateComment);
+     router.route("/deletecomment").patch(verifyJWT,deleteComment);
 
 
     export default router ;
